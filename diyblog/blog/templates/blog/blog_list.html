@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+
+    <h3>All Blogs</h3>
+        {% if blog_list %}
+        <ul>    
+            {%for blog in blog_list %}
+                <li><a href="{% url 'blog-detail' blog.pk %}">{{blog.title}} </a> 
+                    ({{blog.date}}) 
+                    <a href="{% url 'blogger-detail' blog.blogger.pk %}">{{blog.blogger}}</a>
+                </li>
+            {% endfor%}
+        </ul>
+            
+        {% endif %}
+{% endblock %} 

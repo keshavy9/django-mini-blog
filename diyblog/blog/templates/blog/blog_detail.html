@@ -1,0 +1,21 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+
+   
+                <h5><strong>Title: </strong> </h5>{{blog.title}}<br>
+                <h5><strong>Blogger: </strong></h5><a href=" {% url 'blogger-detail' blog.blogger.pk%}">{{blog.blogger}}</a><br>
+                <h5><strong>Post Date: </strong></h5> {{blog.date}}<br>
+                <h5><strong>Description: </strong></h5> {{blog.description}}<br>
+                
+
+                <h5><strong>Comments: </strong></h5>
+                {% if blog.comments.all %}
+                    {% for comment in blog.comments.all %}
+                    <strong>{{comment.commenter}}</strong>: 
+                    {{comment.comment}}<br>
+                    --({{comment.added_at}})<br>
+                    {% endfor %}
+                {% endif %}
+                <br><br>
+     
+{% endblock %} 
