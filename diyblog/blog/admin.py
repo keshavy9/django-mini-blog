@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog, Blogger, Comment
+from .models import Blog, Blogger, Comment, CommentReply, Like
 
 # Register your models here.
 
@@ -16,5 +16,10 @@ class Blogger(admin.ModelAdmin):
 class Comment(admin.ModelAdmin):
     pass
 
+@admin.register(CommentReply)
+class CommentReply(admin.ModelAdmin):
+    pass
 
-
+@admin.register(Like)
+class Like(admin.ModelAdmin):
+    pass    

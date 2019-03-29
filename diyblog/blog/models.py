@@ -35,11 +35,28 @@ class Blogger(models.Model):
 
 class Comment(models.Model):
 
-    comment = models.TextField(max_length="100", null=True)
+    comment = models.CharField(max_length=100, null=True)
     commenter = models.ForeignKey(User,  on_delete = models.SET_NULL, null = True)
     blog = models.ForeignKey(Blog, on_delete = models.SET_NULL, related_name='comments', null = True)
     added_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.comment
+
+
+class CommentReply(models.Model):
+
+    reply = models.CharField(max_length=100, null = True)  
+    comment = models.ForeignKey(Comment, on_delete = models.SET_NULL, related_name='replies',null = True)    
+    replier = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
+    added_at = models.DateTimeField(auto_now_add=True) 
+
+    def __str__(self):
+        return self.reply
+
+
+class Like(models.Model):
+
+    liked_by = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, related_name='+')
+    post = models.ForeignKey(Blog, on_delete = models.SET_NULL, null = True, related_name='likes' )
             
