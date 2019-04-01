@@ -25,6 +25,7 @@ class Blogger(models.Model):
 
     name = models.CharField(max_length=50, help_text="Blogger's name", null=True)
     bio = models.TextField(max_length=200, help_text="Description about the blogger", null=True)
+    user = models.ForeignKey(User, null=True, on_delete= models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -59,4 +60,4 @@ class Like(models.Model):
 
     liked_by = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, related_name='+')
     post = models.ForeignKey(Blog, on_delete = models.SET_NULL, null = True, related_name='likes' )
-            
+  
